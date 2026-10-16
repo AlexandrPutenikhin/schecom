@@ -1,0 +1,11 @@
+{
+    "langrev": "1",
+    "sources": [ "src" ],
+    "targets": {
+        "schecom_deb": {
+            "type": "executable",
+            "build-dir": "build/debug",
+            "output": "build/debug"
+        }
+    }
+}

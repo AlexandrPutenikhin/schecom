@@ -1,0 +1,5 @@
+module schecom;
+
+fn int main(String[] args) {
+    return 0;
+}
