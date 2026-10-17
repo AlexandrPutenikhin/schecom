@@ -19,9 +19,10 @@ module schecom;
 import std::io;
 import schecom::lexer;
 
+const String TEST_SOURCE = $embed("../examples/factorial.sch");
+
 fn int main(String[] args) {
-    String testSource = "(f a b c)\n(g x y)";
-    LexTokenList testTokens = testSource.parse_scheme();
+    LexTokenList testTokens = TEST_SOURCE.parse_scheme();
     defer testTokens.free();
 
     foreach (token : testTokens) {
