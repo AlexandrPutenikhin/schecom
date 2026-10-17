@@ -16,6 +16,16 @@
 */
 module schecom;
 
+import std::io;
+import schecom::lexer;
+
 fn int main(String[] args) {
+    String testSource = "(f a b c)";
+    LexTokenList testTokens = testSource.parse_scheme();
+    defer testTokens.free();
+
+    foreach (token : testTokens) {
+        io::printn(token);
+    }
     return 0;
 }
