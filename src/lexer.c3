@@ -24,8 +24,11 @@ constdef LexTokenType {
     EXPRESSION_END
 }
 
+alias TokenPosition = int[<2>];
+
 struct LexToken {
     LexTokenType type;
+    TokenPosition pos;
 }
 
 alias LexTokenList = List{LexToken};
@@ -34,16 +37,25 @@ fn LexTokenList String.parse_scheme(&self) {
     LexTokenList tokens;
     tokens.init(mem);
 
+    TokenPosition currentPos = {1,1};
+
     foreach (ch : self) {
-        LexToken token = { NONE };
+        LexToken token;
         switch (ch) {
             case '(':
             token.type = EXPRESSION_START;
             case ')':
             token.type = EXPRESSION_END;
+            case '\n':
+            currentPos.x = 0;
+            currentPos.y++;
             default:
         }
-        if (token.type != NONE) tokens.push(token);
+        if (token.type != NONE) {
+            token.pos = currentPos;
+            tokens.push(token);
+        }
+        currentPos.x++;
     }
 
     return tokens;

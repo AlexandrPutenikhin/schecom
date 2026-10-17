@@ -20,7 +20,7 @@ import std::io;
 import schecom::lexer;
 
 fn int main(String[] args) {
-    String testSource = "(f a b c)";
+    String testSource = "(f a b c)\n(g x y)";
     LexTokenList testTokens = testSource.parse_scheme();
     defer testTokens.free();
 
